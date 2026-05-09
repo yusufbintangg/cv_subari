@@ -253,3 +253,4 @@ Urutan prioritas saat konversi:
 4. Behavior yang wajib parity: smooth scroll, active nav, lightbox keyboard, scroll lock
 5. `src/app/components/ui/*` — skip kecuali terbukti dipakai
 
+# cv_subari
