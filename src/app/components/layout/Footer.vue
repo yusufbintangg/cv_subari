@@ -276,7 +276,7 @@ const handleNavClick = (href: string) => {
             color: #64748b;
           "
         >
-          Melayanii Jawa Tengah dengan sepenuh hati
+          Melayani Jawa Tengah dengan sepenuh hati
         </p>
       </div>
     </div>
