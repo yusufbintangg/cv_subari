@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, onMounted, onUnmounted } from "vue"
+import { ref, computed, watch, onMounted, onUnmounted } from "vue"
 import { MapPin, X, ChevronLeft, ChevronRight } from "lucide-vue-next"
 import ImageWithFallback from "../figma/ImageWithFallback.vue"
 
@@ -77,6 +77,14 @@ const lightbox = ref<number | null>(null)
 const hoveredIndex = ref<number | null>(null)
 const sectionRef = ref<HTMLElement | null>(null)
 
+// Computed untuk akses aman ke foto aktif — tidak null saat dipakai di template
+const activePhoto = computed(() =>
+  lightbox.value !== null ? photos[lightbox.value] : null
+)
+const activeIndex = computed(() =>
+  lightbox.value !== null ? lightbox.value + 1 : 0
+)
+
 // IntersectionObserver — trigger reveal grid on scroll
 onMounted(() => {
   if (!sectionRef.value) return
@@ -96,14 +104,14 @@ onMounted(() => {
 const handleKeydown = (e: KeyboardEvent) => {
   if (lightbox.value === null) return
   if (e.key === "Escape") lightbox.value = null
-  if (e.key === "ArrowLeft") lightbox.value = (lightbox.value - 1 + photos.length) % photos.length
-  if (e.key === "ArrowRight") lightbox.value = (lightbox.value + 1) % photos.length
+  if (e.key === "ArrowLeft") lightbox.value = ((lightbox.value as number) - 1 + photos.length) % photos.length
+  if (e.key === "ArrowRight") lightbox.value = ((lightbox.value as number) + 1) % photos.length
 }
 
 onMounted(() => window.addEventListener("keydown", handleKeydown))
 onUnmounted(() => {
   window.removeEventListener("keydown", handleKeydown)
-  document.body.style.overflow = "" // safety net cleanup
+  document.body.style.overflow = ""
 })
 
 // Scroll lock saat lightbox terbuka
@@ -164,15 +172,10 @@ const nextPhoto = () => {
       </div>
 
       <!-- Grid: 2 col mobile, 3 col desktop -->
-      <div
-        class="grid gap-3"
-        style="grid-template-columns: repeat(2, 1fr)"
-        :style="{ gridTemplateColumns: 'repeat(2, 1fr)' }"
-      >
+      <div class="grid gap-3">
         <div
           v-for="(photo, i) in photos"
           :key="photo.judul"
-          class="md:col-span-1"
           :style="{
             position: 'relative',
             borderRadius: '10px',
@@ -252,7 +255,7 @@ const nextPhoto = () => {
     <!-- Lightbox -->
     <Teleport to="body">
       <div
-        v-if="lightbox !== null"
+        v-if="lightbox !== null && activePhoto"
         @click="lightbox = null"
         style="
           position: fixed;
@@ -277,7 +280,7 @@ const nextPhoto = () => {
           color: rgba(255,255,255,0.55);
           user-select: none;
         ">
-          {{ lightbox + 1 }} / {{ photos.length }}
+          {{ activeIndex }} / {{ photos.length }}
         </div>
 
         <!-- Prev -->
@@ -310,8 +313,8 @@ const nextPhoto = () => {
           style="max-width: 88vw; max-height: 82vh; display: flex; flex-direction: column; gap: 12px"
         >
           <img
-            :src="photos[lightbox].src"
-            :alt="photos[lightbox].judul"
+            :src="activePhoto.src"
+            :alt="activePhoto.judul"
             style="
               max-width: 100%;
               max-height: 74vh;
@@ -327,14 +330,14 @@ const nextPhoto = () => {
               font-weight: 700;
               font-size: 1rem;
               color: white;
-            ">{{ photos[lightbox].judul }}</p>
+            ">{{ activePhoto.judul }}</p>
             <div style="display: flex; align-items: center; justify-content: center; gap: 5px; margin-top: 4px">
               <MapPin :size="13" color="#F59E0B" />
               <span style="
                 font-family: 'Inter', sans-serif;
                 font-size: 0.82rem;
                 color: #94A3B8;
-              ">{{ photos[lightbox].lokasi }}</span>
+              ">{{ activePhoto.lokasi }}</span>
             </div>
           </div>
         </div>
@@ -391,10 +394,13 @@ const nextPhoto = () => {
 </template>
 
 <style scoped>
-/* 3 col grid di md ke atas */
+.grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
 @media (min-width: 768px) {
   .grid {
-    grid-template-columns: repeat(3, 1fr) !important;
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 </style>
