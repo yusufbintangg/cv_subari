@@ -18,8 +18,7 @@ const paket: Paket[] = [
     deskripsi: "Cocok untuk septic tank rumah tinggal standard",
     kapasitas: "1.000 - 3.000 liter",
     fitur: [
-      "Kapasitas septic tank 1.000-3.000 liter",
-      "Armada tanki 3.000 liter",
+      "Armada tanki",
       "Teknisi berpengalaman",
       "Bebas biaya survei",
       "Garansi bersih 30 hari",
@@ -35,12 +34,9 @@ const paket: Paket[] = [
     deskripsi: "Untuk ruko, kantor, kos-kosan, dan restoran",
     kapasitas: "3.000 - 8.000 liter",
     fitur: [
-      "Kapasitas septic tank 3.000-8.000 liter",
-      "Armada tanki 6.000 liter",
+      "Armada tanki",
       "2 teknisi profesional",
       "Bebas biaya survei",
-      "Garansi bersih 60 hari",
-      "Proses 2-4 jam",
       "Laporan kondisi septic tank"
     ],
     isPopular: true

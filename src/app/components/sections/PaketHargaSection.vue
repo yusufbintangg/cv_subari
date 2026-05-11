@@ -113,38 +113,14 @@ import {
                   color: #1E293B;
                 "
               >
-                {{ p.nama }}
-              </h3>
-
-              <p
-                class="font-inter mt-1"
-                style="
-                  font-family: 'Inter', sans-serif;
-                  font-size: 0.875rem;
-                  color: #64748B;
-                  line-height: 1.5;
-                "
-              >
                 {{ p.deskripsi }}
-              </p>
+              </h3>
             </div>
 
             <!-- Price -->
             <div>
 
-              <div
-                class="font-grotesk font-bold"
-                :style="{
-                  fontFamily: `'Space Grotesk', sans-serif`,
-                  fontWeight: 700,
-                  fontSize: '1.75rem',
-                  color: p.isPopular
-                    ? '#F59E0B'
-                    : '#1E3A5F'
-                }"
-              >
-                {{ p.hargaDisplay }}
-              </div>
+              
 
               <div
                 class="font-inter mt-1"
@@ -207,7 +183,6 @@ import {
             <a
               :href="generatePaketWAMessage(
                 p.nama,
-                p.hargaDisplay
               )"
               target="_blank"
               rel="noopener noreferrer"

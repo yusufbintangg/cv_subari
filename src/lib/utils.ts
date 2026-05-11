@@ -34,9 +34,9 @@ Mohon konfirmasi ketersediaan jadwal. Terima kasih.`
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`
 }
 
-export const generatePaketWAMessage = (namaPaket: string, hargaDisplay: string): string => {
+export const generatePaketWAMessage = (namaPaket: string): string => {
   const text = `Halo, saya tertarik dengan ${namaPaket}.
-Harga: ${hargaDisplay}.
+
 Mohon info lebih lanjut. Terima kasih.`
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`
 }
