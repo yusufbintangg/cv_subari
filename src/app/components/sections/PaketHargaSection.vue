@@ -119,6 +119,19 @@ import {
 
             <!-- Price -->
             <div>
+
+              
+
+              <div
+                class="font-inter mt-1"
+                style="
+                  font-family: 'Inter', sans-serif;
+                  font-size: 0.8rem;
+                  color: #94A3B8;
+                "
+              >
+                Kapasitas: {{ p.kapasitas }}
+              </div>
             </div>
 
             <!-- Divider -->

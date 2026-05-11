@@ -16,7 +16,7 @@ const paket: Paket[] = [
     harga: 250000,
     hargaDisplay: "Mulai Rp 250.000",
     deskripsi: "Cocok untuk septic tank rumah tinggal standard",
-    kapasitas: "1.000 - 3.000 liter",
+    kapasitas: "2.000 - 4.000 liter",
     fitur: [
       "Armada tanki",
       "Teknisi berpengalaman",
