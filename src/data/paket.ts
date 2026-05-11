@@ -32,7 +32,7 @@ const paket: Paket[] = [
     harga: 600000,
     hargaDisplay: "Mulai Rp 600.000",
     deskripsi: "Untuk ruko, kantor, kos-kosan, dan restoran",
-    kapasitas: "3.000 - 8.000 liter",
+    kapasitas: "4.000 - 8.000 liter",
     fitur: [
       "Armada tanki",
       "2 teknisi profesional",
@@ -47,7 +47,7 @@ const paket: Paket[] = [
     harga: 0,
     hargaDisplay: "Hubungi Kami",
     deskripsi: "Untuk pabrik, hotel, rumah sakit, dan fasilitas besar",
-    kapasitas: "8.000 liter ke atas",
+    kapasitas: "4.000 - 8.000 liter",
     fitur: [
       "Kapasitas tidak terbatas (multi-trip)",
       "Armada tanki khusus",
