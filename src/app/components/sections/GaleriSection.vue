@@ -11,7 +11,7 @@ interface GalleryItem {
 
 const photos: GalleryItem[] = [
   {
-    src: "https://images.unsplash.com/photo-1773232806669-24919988ae6d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=800",
+    src: "https://res.cloudinary.com/knddpxsg/image/upload/v1783608564/WhatsApp_Image_2026-07-09_at_21.28.37_1_pazycw.jpg?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=800",
     judul: "Sedot WC Rumah Tinggal",
     lokasi: "Salatiga Selatan",
   },

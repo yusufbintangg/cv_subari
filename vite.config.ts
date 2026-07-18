@@ -17,6 +17,10 @@ function figmaAssetResolver() {
 }
 
 export default defineConfig({
+  ssgOptions: {
+    script: 'async',
+    formatting: 'minify',
+  },
   server: {
     host: true, // atau '0.0.0.0'
     port: 5173, // opsional
