@@ -1,5 +1,5 @@
 import { ViteSSG } from 'vite-ssg'
-import { createHead } from '@unhead/vue'
+import { createUnhead } from '@unhead/vue'
 import App from './app/App.vue'
 import KotaLanding from './app/KotaLanding.vue'
 import './styles/index.css'
@@ -13,7 +13,6 @@ export const createApp = ViteSSG(
   App,
   { routes },
   ({ app }) => {
-    const head = createHead()
-    app.use(head)
+    app.use(createUnhead())
   },
 )
