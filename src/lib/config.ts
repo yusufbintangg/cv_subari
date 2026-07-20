@@ -1,5 +1,8 @@
 export const WHATSAPP_NUMBER = "6285802753321"
 
+export const LOGO_URL =
+  "https://res.cloudinary.com/o5t4zigo/image/upload/v1784376089/copy_of_chatgpt_image_jul_18_2026_06_49_06_pm_j7kjgu.png"
+
 export const SITE_CONFIG = {
   name: "Sedot WC Salatiga",
   tagline: "Cepat · Bersih · Terpercaya",

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue"
 import { Menu, X, Phone } from "lucide-vue-next"
-import { SITE_CONFIG, WHATSAPP_NUMBER } from "../../../lib/config"
+import { SITE_CONFIG, WHATSAPP_NUMBER, LOGO_URL } from "../../../lib/config"
 
 const navLinks = [
   { label: "Beranda", href: "#hero" },
@@ -93,63 +93,18 @@ const navbarShadow = (isScrolled: boolean) =>
       <a
         href="#hero"
         @click.prevent="handleNavClick('#hero')"
-        style="text-decoration: none; display: flex; align-items: center; gap: 10px"
+        style="text-decoration: none; display: flex; align-items: center"
       >
-        <!-- Icon badge -->
-        <div
+        <img
+          :src="LOGO_URL"
+          alt="CV Subari"
           style="
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background-color: #f59e0b;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            width: 72px;
+            height: 72px;
+            object-fit: cover;
             flex-shrink: 0;
           "
-        >
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="#1E293B"
-            stroke-width="2.2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <rect x="1" y="3" width="15" height="13" rx="2" />
-            <path d="M16 8h4l3 5v3h-7V8z" />
-            <circle cx="5.5" cy="18.5" r="2.5" />
-            <circle cx="18.5" cy="18.5" r="2.5" />
-          </svg>
-        </div>
-        <!-- Text -->
-        <div style="display: flex; flex-direction: column; line-height: 1">
-          <span
-            style="
-              font-family: 'Plus Jakarta Sans', sans-serif;
-              font-weight: 800;
-              font-size: 1rem;
-              letter-spacing: -0.01em;
-              color: white;
-            "
-          >
-            Sedot<span style="color: #f59e0b">WC</span>
-          </span>
-          <span
-            style="
-              font-family: 'Inter', sans-serif;
-              font-weight: 400;
-              font-size: 0.65rem;
-              color: rgba(255, 255, 255, 0.5);
-              letter-spacing: 0.06em;
-              margin-top: 1px;
-            "
-          >
-            SALATIGA
-          </span>
-        </div>
+        />
       </a>
 
       <!-- Nav links -->
@@ -268,54 +223,18 @@ const navbarShadow = (isScrolled: boolean) =>
       <a
         href="#hero"
         @click.prevent="handleNavClick('#hero')"
-        style="text-decoration: none; display: flex; align-items: center; gap: 10px"
+        style="text-decoration: none; display: flex; align-items: center"
       >
-        <div
+        <img
+          :src="LOGO_URL"
+          alt="CV Subari"
           style="
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background-color: #f59e0b;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            width: 64px;
+            height: 64px;
+            object-fit: cover;
+            flex-shrink: 0;
           "
-        >
-          <svg
-            width="17"
-            height="17"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="#1E293B"
-            stroke-width="2.2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <rect x="1" y="3" width="15" height="13" rx="2" />
-            <path d="M16 8h4l3 5v3h-7V8z" />
-            <circle cx="5.5" cy="18.5" r="2.5" />
-            <circle cx="18.5" cy="18.5" r="2.5" />
-          </svg>
-        </div>
-        <span
-          style="
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-weight: 800;
-            font-size: 1rem;
-            color: white;
-          "
-        >
-          Sedot<span style="color: #f59e0b">WC</span>
-          <span
-            style="
-              font-weight: 400;
-              font-size: 0.7rem;
-              color: rgba(255, 255, 255, 0.5);
-              margin-left: 5px;
-            "
-            >Salatiga</span
-          >
-        </span>
+        />
       </a>
 
       <!-- Hamburger -->

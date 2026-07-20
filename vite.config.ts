@@ -18,9 +18,12 @@ function figmaAssetResolver() {
 
 export default defineConfig({
   ssgOptions: {
-    script: 'async',
-    formatting: 'minify',
+  script: 'async',
+  formatting: 'minify',
+  includedRoutes(paths) {
+    return [...paths, '/sedot-wc-salatiga']
   },
+},
   server: {
     host: true, // atau '0.0.0.0'
     port: 5173, // opsional
