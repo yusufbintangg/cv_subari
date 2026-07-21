@@ -11,7 +11,32 @@ import { WHATSAPP_NUMBER } from '../lib/config'
 
 const route = useRoute()
 const slug = computed(() => (route.params.slug as string) ?? '')
-const kota = computed(() => getKotaBySlug(slug.value))
+
+// Capitalize helper (contoh: 'boyolali' -> 'Boyolali')
+const formatNamaKota = (str: string) => {
+  if (!str) return ''
+  return str.charAt(0).toUpperCase() + str.slice(1)
+}
+
+// Ambil data kota dari kota.ts OR generate fallback otomatis
+const kota = computed(() => {
+  const data = getKotaBySlug(slug.value)
+  if (data) return data
+
+  // Fallback jika data kota belum ada di src/data/kota.ts
+  const nama = formatNamaKota(slug.value)
+  if (!nama) return null
+
+  return {
+    nama,
+    metaTitle: `Jasa Sedot WC ${nama} Garansi 100% Tuntas - CV Subari`,
+    metaDescription: `Layanan jasa sedot WC & kuras septic tank di ${nama} profesional, responsif 24 jam, dan bergaransi resmi dari CV Subari.`,
+    intro: `CV Subari hadir melayani jasa sedot WC, penyedotan limbah, dan penanganan saluran mampet di area ${nama} dan sekitarnya. Didukung armada tangki modern & tim berpengalaman.`,
+    penutup: `Jangan biarkan masalah septic tank mengganggu kenyamanan tempat tinggal atau bisnis Anda di ${nama}. Hubungi tim CV Subari sekarang.`,
+    kecamatanDicover: [nama],
+    klien: []
+  }
+})
 
 // Schema.org Structured Data untuk Local SEO Otomatis
 const schemaData = computed(() => {

@@ -21,7 +21,12 @@ export default defineConfig({
   script: 'async',
   formatting: 'minify',
   includedRoutes(paths) {
-    return [...paths, '/sedot-wc-salatiga']
+    const filtered = paths.filter((p) => !p.includes(':'))
+    const kotaSlugs = [
+      'salatiga', 'semarang', 'ungaran', 'boyolali',
+      'demak', 'grobogan', 'sragen', 'temanggung', 'wonogiri',
+    ]
+    return [...filtered, ...kotaSlugs.map((s) => `/sedot-wc-${s}`)]
   },
 },
   server: {
