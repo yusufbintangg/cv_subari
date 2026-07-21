@@ -6,6 +6,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import { RouterLink } from 'vue-router'
 
 import {
   MapPin,
@@ -13,6 +14,7 @@ import {
 } from 'lucide-vue-next'
 
 import wilayah from '@/data/wilayah'
+import { kotaList } from '@/data/kota'
 
 import {
   SITE_CONFIG,
@@ -24,6 +26,11 @@ const waLink = computed(() => {
     'Halo, saya ingin menanyakan apakah layanan tersedia di kota saya. Mohon infonya.'
   )}`
 })
+const kotaWithPage = computed(() => new Set(kotaList.map((k) => k.nama)))
+
+function slugKota(nama: string) {
+  return `/sedot-wc-${nama.toLowerCase().replace(/\s+/g, '-')}`
+}
 </script>
 
 <template>
@@ -80,26 +87,26 @@ const waLink = computed(() => {
         class="flex flex-wrap gap-2 sm:gap-3 justify-center mb-12"
       >
 
-        <div
-          v-for="kota in wilayah"
-          :key="kota"
-          class="flex items-center gap-1.5 px-4 py-2 rounded-full font-inter font-medium transition-all duration-200 hover:scale-105"
-          style="
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            font-size: 0.875rem;
-            background-color: #EFF6FF;
-            color: #1E3A5F;
-            border: 1.5px solid #BFDBFE;
-          "
-        >
-          <MapPin
-            :size="14"
-            color="#1E3A5F"
-          />
-
-          {{ kota }}
-        </div>
+        <component
+  :is="kotaWithPage.has(kota) ? RouterLink : 'div'"
+  v-for="kota in wilayah"
+  :key="kota"
+  :to="kotaWithPage.has(kota) ? slugKota(kota) : undefined"
+  class="flex items-center gap-1.5 px-4 py-2 rounded-full font-inter font-medium transition-all duration-200 hover:scale-105"
+  style="
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 0.875rem;
+    background-color: #EFF6FF;
+    color: #1E3A5F;
+    border: 1.5px solid #BFDBFE;
+    text-decoration: none;
+    cursor: pointer;
+  "
+>
+  <MapPin :size="14" color="#1E3A5F" />
+  {{ kota }}
+</component>
       </div>
 
       <!-- Google Maps -->

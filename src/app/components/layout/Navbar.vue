@@ -2,6 +2,10 @@
 import { ref, onMounted, onUnmounted } from "vue"
 import { Menu, X, Phone } from "lucide-vue-next"
 import { SITE_CONFIG, WHATSAPP_NUMBER, LOGO_URL } from "../../../lib/config"
+import { useRouter, useRoute } from 'vue-router'
+
+const router = useRouter()
+const route = useRoute()
 
 const navLinks = [
   { label: "Beranda", href: "#hero" },
@@ -48,9 +52,15 @@ onUnmounted(() => {
 
 const handleNavClick = (href: string) => {
   isOpen.value = false
-  const id = href.replace("#", "")
+  const id = href.replace('#', '')
+
+  if (route.path !== '/') {
+    router.push({ path: '/', hash: href })
+    return
+  }
+
   const el = document.getElementById(id)
-  if (el) el.scrollIntoView({ behavior: "smooth" })
+  if (el) el.scrollIntoView({ behavior: 'smooth' })
 }
 
 const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Halo, saya ingin menghubungi tim Sedot WC Salatiga.")}`
