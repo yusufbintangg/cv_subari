@@ -1,85 +1,58 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, onMounted, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
-import { useHead } from '@unhead/vue'
-import Navbar from './components/layout/Navbar.vue'
-import Footer from './components/layout/Footer.vue'
-import WhatsAppFloating from './components/shared/WhatsAppFloating.vue'
-import BackToTop from './components/shared/BackToTop.vue'
-import { getKotaBySlug } from '../data/kota'
-import { WHATSAPP_NUMBER } from '../lib/config'
+import { getKotaBySlug } from "../data/kota";
+
 
 const route = useRoute()
-const slug = computed(() => (route.params.slug as string) ?? '')
+const kota = computed(() => getKotaBySlug(route.params.slug as string))
 
-// Capitalize helper (contoh: 'boyolali' -> 'Boyolali')
-const formatNamaKota = (str: string) => {
-  if (!str) return ''
-  return str.charAt(0).toUpperCase() + str.slice(1)
-}
+watchEffect(() => {
+  if (kota.value) {
+    // 1. Update Title & Meta Description Dinamis
+    document.title = kota.value.metaTitle
+    
+    let metaDesc = document.querySelector('meta[name="description"]')
+    if (metaDesc) metaDesc.setAttribute('content', kota.value.metaDescription)
 
-// Ambil data kota dari kota.ts OR generate fallback otomatis
-const kota = computed(() => {
-  const data = getKotaBySlug(slug.value)
-  if (data) return data
+    // 2. Update Canonical Tag ke WWW
+    let canonical = document.querySelector('link[rel="canonical"]')
+    if (canonical) {
+      canonical.setAttribute('href', `https://www.sedotwcjateng.id/sedot-wc-${kota.value.slug}`)
+    }
 
-  // Fallback jika data kota belum ada di src/data/kota.ts
-  const nama = formatNamaKota(slug.value)
-  if (!nama) return null
+    // 3. Inject Dynamic Schema LocalBusiness khusus kota tersebut
+    const schemaData = {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": `CV Subari - Sedot WC ${kota.value.nama}`,
+      "description": kota.value.metaDescription,
+      "url": `https://www.sedotwcjateng.id/sedot-wc-${kota.value.slug}`,
+      "telephone": "+6285802753321",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": kota.value.nama,
+        "addressRegion": "Jawa Tengah",
+        "addressCountry": "ID"
+      },
+      "areaServed": kota.value.nama,
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+        "opens": "00:00",
+        "closes": "23:59"
+      }
+    }
 
-  return {
-    nama,
-    metaTitle: `Jasa Sedot WC ${nama} Garansi 100% Tuntas - CV Subari`,
-    metaDescription: `Layanan jasa sedot WC & kuras septic tank di ${nama} profesional, responsif 24 jam, dan bergaransi resmi dari CV Subari.`,
-    intro: `CV Subari hadir melayani jasa sedot WC, penyedotan limbah, dan penanganan saluran mampet di area ${nama} dan sekitarnya. Didukung armada tangki modern & tim berpengalaman.`,
-    penutup: `Jangan biarkan masalah septic tank mengganggu kenyamanan tempat tinggal atau bisnis Anda di ${nama}. Hubungi tim CV Subari sekarang.`,
-    kecamatanDicover: [nama],
-    klien: []
+    let scriptSchema = document.getElementById('dynamic-city-schema')
+    if (!scriptSchema) {
+      scriptSchema = document.createElement('script')
+      scriptSchema.id = 'dynamic-city-schema'
+      scriptSchema.setAttribute('type', 'application/ld+json')
+      document.head.appendChild(scriptSchema)
+    }
+    scriptSchema.textContent = JSON.stringify(schemaData)
   }
-})
-
-// Schema.org Structured Data untuk Local SEO Otomatis
-const schemaData = computed(() => {
-  if (!kota.value) return null
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    name: `Sedot WC ${kota.value.nama}`,
-    description: kota.value.metaDescription,
-    telephone: '+6285802753321',
-    areaServed: kota.value.kecamatanDicover.map((kec) => ({
-      '@type': 'AdministrativeArea',
-      name: `Kecamatan ${kec}, ${kota.value?.nama}`,
-    })),
-    priceRange: '$$',
-  }
-})
-
-// SEO per-halaman & Schema Injection
-useHead(() => ({
-  title: kota.value ? kota.value.metaTitle : 'Halaman Tidak Ditemukan',
-  meta: [
-    {
-      name: 'description',
-      content: kota.value ? kota.value.metaDescription : '',
-    },
-    ...(!kota.value ? [{ name: 'robots', content: 'noindex, nofollow' }] : []),
-  ],
-  script: schemaData.value
-    ? [
-        {
-          type: 'application/ld+json',
-          children: JSON.stringify(schemaData.value),
-        },
-      ]
-    : [],
-}))
-
-const waLink = computed(() => {
-  const nama = kota.value?.nama ?? ''
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-    `Halo, saya ingin tanya jasa sedot WC di ${nama}.`,
-  )}`
 })
 </script>
 

@@ -43,15 +43,16 @@ export const kotaList: KotaData[] = [
   {
     slug: 'semarang',
     nama: 'Semarang',
-    metaTitle: 'Sedot WC Semarang 24 Jam Bergaransi | CV Subari',
-    metaDescription:
+    metaTitle: 'Jasa Sedot WC Semarang Murah & Bergaransi 24 Jam | CV Subari',
+    metaDescription: 
       'Layanan sedot WC Semarang profesional & bergaransi. Melayani area Pedurungan, Banyumanik, Tembalang, Genuk, hingga Semarang Barat 24 Jam.',
     intro: `Semarang merupakan pusat aktivitas komersial dan pemukiman padat di Jawa Tengah. CV Subari siap melayani kebutuhan sedot WC, pengurasan septic tank, dan pelancaran saluran mampet di seluruh wilayah Kota Semarang dengan armada tangki besar dan tim profesional responsif 24 jam.`,
-    kecamatanDicover: ['Banyumanik', 'Tembalang', 'Pedurungan', 'Genuk', 'Semarang Barat', 'Semarang Selatan', 'Gajahmungkur', 'Ngaliyan'],
+    kecamatanDicover: ['Banyumanik', 'Tembalang', 'Pedurungan', 'Genuk', 'Semarang Barat', 'Semarang Selatan', 'Gajahmungkur', 'Ngaliyan', 'Semarang Timur', 'Semarang Utara'],
     klien: [
       { nama: 'Kawasan Industri Wijayakusuma', kecamatan: 'Tugu' },
       { nama: 'Area Komersial Simpang Lima', kecamatan: 'Semarang Selatan' },
       { nama: 'Perumahan Graha Candi Golf', kecamatan: 'Tembalang' },
+      { nama: 'Ruko & Pemukiman Pedurungan', kecamatan: 'Pedurungan' },
     ],
     penutup: `Layanan sedot WC Semarang dari CV Subari mengutamakan kebersihan kerja, pengerjaan tanpa bongkar berlebih, dan jaminan tuntas. Hubungi tim kami sekarang untuk panggilan darurat maupun perawatan rutin.`,
   },

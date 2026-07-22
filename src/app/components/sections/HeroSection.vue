@@ -332,7 +332,7 @@ onMounted(() => {
             />
 
             <ImageWithFallback
-              src="https://images.unsplash.com/photo-1773232806669-24919988ae6d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080"
+              src="https://res.cloudinary.com/o5t4zigo/image/upload/v1784375064/hero_nzotrn.jpg"
               alt="Armada truk sedot WC profesional Salatiga"
               :style="{
                 width: '100%',
