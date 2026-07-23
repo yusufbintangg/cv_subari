@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { RouterLink } from "vue-router"
 import { Truck, MapPin, Phone, Clock } from "lucide-vue-next"
 import { SITE_CONFIG, WHATSAPP_NUMBER } from "../../../lib/config"
+import { kotaList } from "@/data/kota" // Import data kota
 
 const quickLinks = [
   { label: "Layanan", href: "#layanan" },
@@ -22,6 +24,10 @@ const handleNavClick = (href: string) => {
   const id = href.replace("#", "")
   const el = document.getElementById(id)
   if (el) el.scrollIntoView({ behavior: "smooth" })
+}
+
+function slugKota(nama: string) {
+  return `/sedot-wc-${nama.toLowerCase().replace(/\s+/g, '-')}`
 }
 </script>
 
@@ -255,9 +261,34 @@ const handleNavClick = (href: string) => {
         </div>
       </div>
 
+      <!-- SEO Internal Links Section untuk Halaman Kota -->
+      <div class="mt-12 pt-8 border-t border-slate-800">
+        <h5
+          style="
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #94a3b8;
+            margin-bottom: 12px;
+          "
+        >
+          Layanan Sedot WC Berdasarkan Kota:
+        </h5>
+        <div class="flex flex-wrap gap-x-4 gap-y-2 text-xs text-slate-400">
+          <RouterLink
+            v-for="k in kotaList"
+            :key="k.slug"
+            :to="slugKota(k.nama)"
+            class="hover:text-yellow-400 transition-colors underline-offset-4 hover:underline"
+          >
+            Sedot WC {{ k.nama }}
+          </RouterLink>
+        </div>
+      </div>
+
       <!-- Bottom Bar -->
       <div
-        class="mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between gap-2"
+        class="mt-8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-2"
         style="border-top: 1px solid #1e293b"
       >
         <p
@@ -276,7 +307,7 @@ const handleNavClick = (href: string) => {
             color: #64748b;
           "
         >
-          Melayani Jawa Tengah dengan sepenuh hati
+          Melayanan Jawa Tengah dengan sepenuh hati
         </p>
       </div>
     </div>

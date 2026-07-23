@@ -190,7 +190,7 @@ onMounted(() => {
     />
 
     <div
-      class="relative flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 lg:pt-28 pb-8 flex flex-col"
+      class="relative flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 sm:pt-36 lg:pt-28 pb-8 flex flex-col"
     >
       <div
         class="flex flex-col lg:flex-row items-center gap-12 flex-1"

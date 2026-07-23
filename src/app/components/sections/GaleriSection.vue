@@ -1,75 +1,19 @@
 <script setup lang="ts">
 import { ref, computed, watch, onMounted, onUnmounted } from "vue"
-import { MapPin, X, ChevronLeft, ChevronRight } from "lucide-vue-next"
+import { X, ChevronLeft, ChevronRight } from "lucide-vue-next"
 import ImageWithFallback from "../figma/ImageWithFallback.vue"
 
 interface GalleryItem {
   src: string
-  judul: string
-  lokasi: string
 }
 
 const photos: GalleryItem[] = [
-  {
-    src: "https://res.cloudinary.com/knddpxsg/image/upload/v1783608564/WhatsApp_Image_2026-07-09_at_21.28.37_1_pazycw.jpg?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=800",
-    judul: "Sedot WC Rumah Tinggal",
-    lokasi: "Salatiga Selatan",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1620301015743-73bcc87c89e8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=800",
-    judul: "Pembersihan Saluran",
-    lokasi: "Argomulyo, Salatiga",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1589677735376-d68e32d9918d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=800",
-    judul: "Pompa Septic Tank",
-    lokasi: "Tingkir, Salatiga",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1676210133055-eab6ef033ce3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=800",
-    judul: "Perawatan Instalasi",
-    lokasi: "Sidomukti, Salatiga",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1737244347989-36286970dd3f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=800",
-    judul: "Pembersihan Pipa",
-    lokasi: "Semarang Barat",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1744484347124-ad6ad1b222aa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=800",
-    judul: "Pengerjaan Drainase",
-    lokasi: "Ungaran, Semarang",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1759390304428-fbe1752a999e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=800",
-    judul: "Penggalian Pipa Baru",
-    lokasi: "Ambarawa, Semarang",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1774019883172-a89730a86500?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=800",
-    judul: "Mesin Pompa Industri",
-    lokasi: "Kendal, Jawa Tengah",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1621905252472-943afaa20e20?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=800",
-    judul: "Tim Teknisi Siap Kerja",
-    lokasi: "Boyolali, Jawa Tengah",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1763033769948-ef5f827b5755?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=800",
-    judul: "Armada di Lokasi",
-    lokasi: "Magelang, Jawa Tengah",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1766497278321-dff63e463f72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=800",
-    judul: "Perbaikan Pipa Bocor",
-    lokasi: "Klaten, Jawa Tengah",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1626713748868-58643bf60860?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=800",
-    judul: "Pengolahan Limbah",
-    lokasi: "Temanggung, Jawa Tengah",
-  },
+  { src: "https://res.cloudinary.com/o5t4zigo/image/upload/v1784375064/foto6_pwq4f3.jpg" },
+  { src: "https://res.cloudinary.com/o5t4zigo/image/upload/v1784375064/foto7_nmzqng.jpg" },
+  { src: "https://res.cloudinary.com/o5t4zigo/image/upload/v1784375064/foto8_qnyrda.jpg" },
+  { src: "https://res.cloudinary.com/o5t4zigo/image/upload/v1784375063/foto4_g39pow.jpg" },
+  { src: "https://res.cloudinary.com/o5t4zigo/image/upload/v1784375063/foto1_bcbthr.jpg" },
+  { src: "https://res.cloudinary.com/o5t4zigo/image/upload/v1784375063/foto3_xknvhs.jpg" },
 ]
 
 const visible = ref(false)
@@ -158,7 +102,7 @@ const nextPhoto = () => {
           Galeri Pekerjaan Kami
         </h2>
         <div class="flex justify-center mt-3">
-          <div style="width: 56px; height: 4px; border-radius: 2px; background-color: #F59E0B" />
+          <div style="width: 56px; height: 4px; border-radius: 2px; background-color: #F59E0B"></div>
         </div>
         <p style="
           font-family: 'Inter', sans-serif;
@@ -175,7 +119,7 @@ const nextPhoto = () => {
       <div class="grid gap-3">
         <div
           v-for="(photo, i) in photos"
-          :key="photo.judul"
+          :key="i"
           :style="{
             position: 'relative',
             borderRadius: '10px',
@@ -196,7 +140,6 @@ const nextPhoto = () => {
           <!-- Photo -->
           <ImageWithFallback
             :src="photo.src"
-            :alt="photo.judul"
             :style="{
               width: '100%',
               height: '100%',
@@ -206,36 +149,6 @@ const nextPhoto = () => {
               transition: 'transform 0.45s ease',
             }"
           />
-
-          <!-- Bottom overlay — slides up on hover -->
-          <div :style="{
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            right: 0,
-            background: 'linear-gradient(to top, rgba(15,23,42,0.92) 0%, rgba(15,23,42,0.6) 60%, transparent 100%)',
-            padding: '20px 14px 14px',
-            transform: hoveredIndex === i ? 'translateY(0)' : 'translateY(100%)',
-            transition: 'transform 0.38s cubic-bezier(0.4,0,0.2,1)',
-          }">
-            <p style="
-              font-family: 'Plus Jakarta Sans', sans-serif;
-              font-weight: 700;
-              font-size: 0.85rem;
-              color: white;
-              line-height: 1.3;
-              margin-bottom: 4px;
-            ">{{ photo.judul }}</p>
-            <div style="display: flex; align-items: center; gap: 4px">
-              <MapPin :size="11" color="#F59E0B" />
-              <span style="
-                font-family: 'Inter', sans-serif;
-                font-size: 0.72rem;
-                color: #CBD5E1;
-                line-height: 1;
-              ">{{ photo.lokasi }}</span>
-            </div>
-          </div>
 
           <!-- Top accent line on hover -->
           <div :style="{
@@ -247,10 +160,9 @@ const nextPhoto = () => {
             background: 'linear-gradient(90deg, #F59E0B, #FCD34D)',
             opacity: hoveredIndex === i ? 1 : 0,
             transition: 'opacity 0.3s ease',
-          }" />
+          }"></div>
         </div>
       </div>
-    </div>
 
     <!-- Lightbox -->
     <Teleport to="body">
@@ -307,40 +219,20 @@ const nextPhoto = () => {
           <ChevronLeft :size="22" />
         </button>
 
-        <!-- Image + caption -->
-        <div
+        <!-- Image -->
+        <img
           @click.stop
-          style="max-width: 88vw; max-height: 82vh; display: flex; flex-direction: column; gap: 12px"
-        >
-          <img
-            :src="activePhoto.src"
-            :alt="activePhoto.judul"
-            style="
-              max-width: 100%;
-              max-height: 74vh;
-              object-fit: contain;
-              border-radius: 10px;
-              box-shadow: 0 12px 48px rgba(0,0,0,0.6);
-              display: block;
-            "
-          />
-          <div style="text-align: center">
-            <p style="
-              font-family: 'Plus Jakarta Sans', sans-serif;
-              font-weight: 700;
-              font-size: 1rem;
-              color: white;
-            ">{{ activePhoto.judul }}</p>
-            <div style="display: flex; align-items: center; justify-content: center; gap: 5px; margin-top: 4px">
-              <MapPin :size="13" color="#F59E0B" />
-              <span style="
-                font-family: 'Inter', sans-serif;
-                font-size: 0.82rem;
-                color: #94A3B8;
-              ">{{ activePhoto.lokasi }}</span>
-            </div>
-          </div>
-        </div>
+          :src="activePhoto.src"
+          alt="Foto Dokumentasi"
+          style="
+            max-width: 88vw;
+            max-height: 82vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 12px 48px rgba(0,0,0,0.6);
+            display: block;
+          "
+        />
 
         <!-- Next -->
         <button
@@ -390,6 +282,7 @@ const nextPhoto = () => {
         </button>
       </div>
     </Teleport>
+    </div>
   </section>
 </template>
 
